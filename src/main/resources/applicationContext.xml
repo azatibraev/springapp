@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--    Внедрение через constructor-->
+
+    <!--    <bean id="testBean1"-->
+<!--          class="kg.azati.springcourse.testBeans.TestBean">-->
+<!--        <constructor-arg value="Azat this is your first Spring project"/>-->
+<!--    </bean>-->
+
+<!--    Внедрение через ссылку-->
+
+    <bean id="musicBean"
+          class="kg.azati.springcourse.musicRepository.RockMusic">
+    </bean>
+
+<!--    <bean id="musicPlayer"-->
+<!--    class="kg.azati.springcourse.musicRepository.MusicPlayer">-->
+<!--        <constructor-arg ref="musicBean"/> &lt;!&ndash;    Внедрение через ссылку&ndash;&gt;-->
+<!--    </bean>-->
+
+    <!--    Внедрение через setter используя ссылку-->
+
+<!--    <bean id="musicPlayer"-->
+<!--          class="kg.azati.springcourse.musicRepository.MusicPlayer">-->
+<!--<property name="music" ref="musicBean"/>-->
+<!--    </bean>-->
+
+
+    <!--    Добавление через setter -->
+
+<!--    <bean id="musicPlayer"-->
+<!--          class="kg.azati.springcourse.musicRepository.MusicPlayer">-->
+<!--        <property name="music" ref="musicBean"/>-->
+<!--        <property name="name" value="This is a setter embed name in MusicPlayer class"/>-->
+<!--        <property name="volume" value="123.123"/>-->
+<!--    </bean>-->
+
+
+<!--    Внедрение через файл-->
+
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+
+    <bean id="musicPlayer"
+          class="kg.azati.springcourse.musicRepository.MusicPlayer">
+        <property name="music" ref="musicBean"/>
+        <property name="name" value="${musicPlayer.name}"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
+    </bean>
+
+</beans>
